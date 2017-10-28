@@ -1,4 +1,5 @@
 // For Answers
+export const CLEAR_ANSWER = 'CLEAR_ANSWER';
 export const LOAD_ANSWER = 'LOAD_ANSWER';
 
 // For Request Management

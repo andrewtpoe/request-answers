@@ -1,0 +1,92 @@
+*,
+html,
+body {
+  box-sizing: border-box;
+  color: darkslategrey;
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  margin: 5% 0;
+}
+
+.card {
+  border-radius: 2px;
+  border: 1px solid grey;
+  box-shadow: 0 8px 8px lightgrey;
+  flex: 1;
+  padding: 32px;
+  max-width: 500px;
+}
+
+@media all and (max-width: 520px) {
+  .card {
+    max-width: 80%;
+  }
+}
+
+.card__item {
+  padding: 4px;
+}
+
+.card__message {
+  padding: 8px;
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.card__message--error {
+  background-color: red;
+  box-shadow: 1px 1px 1px grey;
+  text-shadow: 1px 1px 1px grey;
+  color: white;
+}
+
+.card__message--success {
+  background-color: green;
+  text-shadow: 1px 1px 1px grey;
+  color: white;
+}
+
+.card__input {
+  border: 1px solid grey;
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.card__image {
+  width: 100%;
+}
+
+.button {
+  cursor: pointer;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px lightgrey;
+  transition: box-shadow 0.3s;
+}
+.button:hover {
+  box-shadow: 0 4px 4px lightgrey;
+}
+
+.button--block {
+  display: block;
+  width: 100%;
+}

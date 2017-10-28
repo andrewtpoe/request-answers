@@ -4,7 +4,7 @@ import QuestionCard from 'compositions/QuestionCard';
 
 function Home() {
   return (
-    <div>
+    <div className="page">
       <QuestionCard />
     </div>
   );
