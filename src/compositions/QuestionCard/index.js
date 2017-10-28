@@ -1,26 +1,109 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import withData from './DataProvider';
 
-function QuestionCard({
-  answer,
-  answerImage,
-  loadAnswer,
-  loadAnswerRequestFailed,
-  loadAnswerRequestPending,
-}) {
-  return (
-    <div>
-      <button onClick={loadAnswer}>Click here for the answer.</button>
-      <h3>Answer Request Pending:</h3>
-      <p>{loadAnswerRequestPending ? 'true' : ''}</p>
-      <h3>Answer Request Failed:</h3>
-      <p>{loadAnswerRequestFailed ? 'true' : ''}</p>
-      <h3>Your Answer:</h3>
-      <p>{answer}</p>
-      {answerImage && <img src={answerImage} alt="Answer GIF" />}
-    </div>
-  );
+class QuestionCard extends Component {
+  state = {
+    textError: undefined,
+    textInput: '',
+  };
+
+  handleAnswer = () => {
+    if (this.state.textInput) {
+      this.setState({ textError: undefined });
+      this.props.loadAnswer();
+    } else {
+      this.setState({ textError: 'Question required' });
+    }
+  };
+
+  handleReset = () => {
+    this.setState({ textInput: '' });
+    this.props.clearAnswer();
+  };
+
+  updateText = e => {
+    if (e.target.value && this.state.textError) {
+      this.setState({ textError: undefined });
+    }
+    this.setState({ textInput: e.target.value });
+  };
+
+  render() {
+    const {
+      answer,
+      answerImage,
+      loadAnswerRequestFailed,
+      loadAnswerRequestPending,
+    } = this.props;
+
+    return (
+      <div className="card">
+        {answer && (
+          <div>
+            <div className="card__item">
+              <button
+                className="button button--block"
+                onClick={this.handleReset}
+              >
+                Ask a new question
+              </button>
+            </div>
+            <div className="card__item">
+              <h3>Your Answer:</h3>
+              <p>{answer}</p>
+              <img className="card__image" src={answerImage} alt="Answer GIF" />
+            </div>
+          </div>
+        )}
+        {!answer && (
+          <div>
+            <div className="card__item">
+              <h2>What is your question?</h2>
+            </div>
+            {this.state.textError && (
+              <div className="card__item">
+                <div className="card__message card__message--error">
+                  {this.state.textError}
+                </div>
+              </div>
+            )}
+            <div className="card__item">
+              <textarea
+                className="card__input"
+                required
+                rows="5"
+                onChange={this.updateText}
+                value={this.state.textInput}
+              />
+            </div>
+            <div className="card__item">
+              <button
+                className="button button--block"
+                onClick={this.handleAnswer}
+              >
+                Request Answer
+              </button>
+            </div>
+            {loadAnswerRequestPending && (
+              <div className="card__item">
+                <div className="card__message card__message--success">
+                  Request Pending
+                </div>
+              </div>
+            )}
+            {loadAnswerRequestFailed && (
+              <div className="card__item">
+                <div className="card__message card__message--error">
+                  Request Failed
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 export default withData(QuestionCard);

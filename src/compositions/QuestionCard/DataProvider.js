@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loadAnswer } from 'redux/answers/actions';
+import { clearAnswer, loadAnswer } from 'redux/answers/actions';
 import { answerSelector, answerImageSelector } from 'redux/answers/selectors';
 import {
   loadAnswerRequestFailedSelector,
@@ -24,6 +24,7 @@ const withData = WrappedComponent => {
 
   function mapDispatchToProps(dispatch) {
     return {
+      clearAnswer: () => dispatch(clearAnswer()),
       loadAnswer: () => dispatch(loadAnswer()),
     };
   }

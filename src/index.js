@@ -10,6 +10,8 @@ import registerServiceWorker from 'setup/registerServiceWorker';
 import { store } from 'setup/redux';
 import Root from 'setup/Root';
 
+import './styles.css';
+
 const root = document.getElementById('root');
 
 function renderRoot(Component) {
