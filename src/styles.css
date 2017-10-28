@@ -12,10 +12,16 @@ body {
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
-.page {
+.content {
   display: flex;
   justify-content: center;
-  margin: 5% 0;
+}
+.content:nth-of-type(1) {
+  margin: 5% 0 16px 0;
+}
+
+.content__link {
+  text-align: center;
 }
 
 .card {
