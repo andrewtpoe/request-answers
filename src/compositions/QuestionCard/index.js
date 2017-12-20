@@ -33,8 +33,8 @@ class QuestionCard extends Component {
     const {
       answer,
       answerImage,
-      loadAnswerRequestFailed,
-      loadAnswerRequestPending,
+      loadAnswerError,
+      loadAnswerActive,
     } = this.props;
 
     return (
@@ -74,6 +74,7 @@ class QuestionCard extends Component {
                 required
                 rows="5"
                 onChange={this.updateText}
+                placeholder="Ask a yes/no question. Get your answer from the internet. 100% accurate."
                 value={this.state.textInput}
               />
             </div>
@@ -85,14 +86,14 @@ class QuestionCard extends Component {
                 Request Answer
               </button>
             </div>
-            {loadAnswerRequestPending && (
+            {loadAnswerActive && (
               <div className="card__item">
                 <div className="card__message card__message--success">
                   Request Pending
                 </div>
               </div>
             )}
-            {loadAnswerRequestFailed && (
+            {loadAnswerError && (
               <div className="card__item">
                 <div className="card__message card__message--error">
                   Request Failed

@@ -23,11 +23,14 @@ export const initialState = {
  */
 function removeActionFromList(state, key, action) {
   const list = state[key];
+  let firstInstance = true;
   return list.reduce((acc, request) => {
     if (
       request.meta.requestType === action.meta.requestType &&
-      request.payload === action.payload
+      request.payload === action.payload &&
+      firstInstance
     ) {
+      firstInstance = false;
       return acc;
     }
     return acc.concat(request);
