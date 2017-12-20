@@ -105,8 +105,6 @@ export function handleRequestsQueueChange(store) {
 }
 
 function addSubscriber(store) {
-  // In a real production app, you'd want to set the throttle to a much lower value, maybe 16ms.
-  // Just enough time for the page to render and queue up all of the requests that need to happen.
   const onStateChange = throttle(() => {
     handleRequestsQueueChange(store);
   }, 16);

@@ -10,7 +10,23 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "start": "cross-env NODE_PATH=src react-scripts start",
-    "test": "react-scripts test --env=jsdom"
+    "test": "cross-env NODE_PATH=src react-scripts test --env=jsdom"
+  },
+  "jest": {
+    "collectCoverageFrom" : [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": ["text"]
   },
   "dependencies": {
     "gh-pages": "^1.0.0",
